@@ -4,10 +4,10 @@ export interface Composable {
   addChild(child: Component): void;
 }
 
-type onDeleteListener = () => void;
+type OnDeleteListener = () => void;
 
 interface SectionContainer extends Component, Composable {
-  setOnDeleteListener(listener: onDeleteListener): void;
+  setOnDeleteListener(listener: OnDeleteListener): void;
 }
 
 type SectionContainerConstructor = {
@@ -18,7 +18,7 @@ export class PageItemComponent
   extends BaseComponent<HTMLElement>
   implements Composable
 {
-  private deleteListener?: onDeleteListener;
+  private deleteListener?: OnDeleteListener;
   constructor() {
     super(`<li class="page-item">
             <section class="page-item__content"></section>
@@ -42,7 +42,7 @@ export class PageItemComponent
     child.attachTo(container);
   }
 
-  setOnDeleteListener(listener: onDeleteListener) {
+  setOnDeleteListener(listener: OnDeleteListener) {
     this.deleteListener = listener;
   }
 }
