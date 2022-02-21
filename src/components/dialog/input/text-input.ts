@@ -1,4 +1,4 @@
-import { BaseComponent } from "../../component";
+import { BaseComponent } from "../../component.js";
 
 export class TextInput extends BaseComponent<HTMLElement> {
   constructor() {
@@ -9,7 +9,7 @@ export class TextInput extends BaseComponent<HTMLElement> {
             </div>
             <div class="form__container">
               <label for="content">Content</label>
-              <textarea type="text" id="content" row="3" />
+              <textarea type="text" id="content" row="3" ></textarea>
             </div>
           </div>`);
   }
@@ -19,7 +19,7 @@ export class TextInput extends BaseComponent<HTMLElement> {
     return element.value;
   }
 
-  get url(): string {
+  get content(): string {
     const element = this.element.querySelector("#content")! as HTMLInputElement;
     return element.value;
   }

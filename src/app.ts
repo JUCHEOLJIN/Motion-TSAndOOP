@@ -1,3 +1,4 @@
+import { TextInput } from "./components/dialog/input/text-input.js";
 import { MediaInput } from "./components/dialog/input/media-input.js";
 import { TodoComponent } from "./components/page/item/todo.js";
 import { NoteComponent } from "./components/page/item/note.js";
@@ -16,18 +17,6 @@ class App {
   constructor(root: HTMLElement, dialogRoot: HTMLElement) {
     this.page = new PageComponent(PageItemComponent);
     this.page.attachTo(root);
-
-    // const video = new VideoComponent(
-    //   "Video Title",
-    //   "https://www.youtube.com/zrzs8-ei-Bo"
-    // );
-    // this.page.addChild(video);
-
-    const note = new NoteComponent("Note Title", "note content...");
-    this.page.addChild(note);
-
-    const todo = new TodoComponent("Todo Title", "study coding");
-    this.page.addChild(todo);
 
     const imageBtn = document.querySelector("#new-image")! as HTMLButtonElement;
     imageBtn.addEventListener("click", () => {
@@ -59,9 +48,44 @@ class App {
       });
 
       dialog.setOnSubmitListener(() => {
-        console.log(mediaInput.url);
         const video = new VideoComponent(mediaInput.title, mediaInput.url);
         this.page.addChild(video);
+        dialog.removeFrom(dialogRoot);
+      });
+    });
+
+    const noteBtn = document.querySelector("#new-note")! as HTMLButtonElement;
+    noteBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+      const textInput = new TextInput();
+      dialog.addChild(textInput);
+      dialog.attachTo(dialogRoot);
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(dialogRoot);
+      });
+
+      dialog.setOnSubmitListener(() => {
+        const note = new NoteComponent(textInput.title, textInput.content);
+        this.page.addChild(note);
+        dialog.removeFrom(dialogRoot);
+      });
+    });
+
+    const todoBtn = document.querySelector("#new-todo")! as HTMLButtonElement;
+    todoBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+      const textInput = new TextInput();
+      dialog.addChild(textInput);
+      dialog.attachTo(dialogRoot);
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(dialogRoot);
+      });
+
+      dialog.setOnSubmitListener(() => {
+        const todo = new TodoComponent(textInput.title, textInput.content);
+        this.page.addChild(todo);
         dialog.removeFrom(dialogRoot);
       });
     });
