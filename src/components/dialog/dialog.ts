@@ -1,5 +1,16 @@
+import { MediaInput } from "./input/media-input";
 import { BaseComponent, Component } from "../component.js";
 import { Composable } from "../page/page.js";
+
+export interface MediaData {
+  readonly title: string;
+  readonly url: string;
+}
+
+export interface TextData {
+  readonly title: string;
+  readonly content: string;
+}
 
 type OnCloseListener = () => void;
 type OnSubmitListener = () => void;

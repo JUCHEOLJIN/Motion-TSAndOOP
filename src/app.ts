@@ -10,9 +10,13 @@ import {
 } from "./components/page/page.js";
 import { VideoComponent } from "./components/page/item/video.js";
 import { BaseComponent, Component } from "./components/component.js";
-import { InputDialog } from "./components/dialog/dialog.js";
+import {
+  InputDialog,
+  TextData,
+  MediaData,
+} from "./components/dialog/dialog.js";
 
-type InputComponentConstructor<T = MediaInput | TextInput> = {
+type InputComponentConstructor<T extends (MediaData | TextData) & Component> = {
   new (): T;
 };
 
@@ -48,7 +52,7 @@ class App {
     );
   }
 
-  private bindElementToDialog<T extends MediaInput | TextInput>(
+  private bindElementToDialog<T extends (MediaData | TextData) & Component>(
     selector: string,
     inputComponent: InputComponentConstructor<T>,
     makeSection: (input: T) => Component
