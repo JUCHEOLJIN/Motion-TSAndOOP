@@ -1,5 +1,7 @@
 import { BaseComponent, Component } from "../component.js";
 
+// 페이지 주석 추가
+
 export interface Composable {
   addChild(child: Component): void;
 }
