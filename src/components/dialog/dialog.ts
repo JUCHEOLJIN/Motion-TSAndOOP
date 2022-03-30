@@ -2,6 +2,8 @@ import { MediaInput } from "./input/media-input";
 import { BaseComponent, Component } from "../component.js";
 import { Composable } from "../page/page.js";
 
+// 다이얼로그 주석추가
+
 export interface MediaData {
   readonly title: string;
   readonly url: string;
