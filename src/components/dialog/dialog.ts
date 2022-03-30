@@ -3,6 +3,7 @@ import { BaseComponent, Component } from "../component.js";
 import { Composable } from "../page/page.js";
 
 // 다이얼로그 주석추가
+// 다이얼로그 주석추가2
 
 export interface MediaData {
   readonly title: string;
