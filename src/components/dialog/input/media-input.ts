@@ -1,5 +1,7 @@
 import { BaseComponent } from "../../component.js";
 
+// 주석 추가
+
 export class MediaInput extends BaseComponent<HTMLElement> {
   constructor() {
     super(`<div>
